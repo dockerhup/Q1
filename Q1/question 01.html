@@ -5,40 +5,46 @@
 <h1>My first Page</h1>
 
 <!-- 
-	###Question 01###
+
+  ###Question 01###
+  
 
 $ sudo apt-get update
 $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 docker --version
 docker pull imagename
-docker images 			// show images
-docker image inspect iname 	// more detail
-docker run -p 80:80 iname	//run image
-docker ps 			//list all running containers
+docker images       // show images
+docker image inspect iname  // more detail
+docker run -p 80:80 iname //run image
+docker ps       //list all running containers
 docker ps -a
-docker stop cont_id		//stop running cont
+docker stop cont_id   //stop running cont
 docker kill cont_id
 docker rm cont_id
-docker rmi img_id		//remove image
-docker build -t img_name 	//build image
+docker rmi img_id   //remove image
+docker build -t img_name  //build image
 
 docker container logs cont_id
-		 kill
-		 rm
-		 run
+     kill
+     rm
+     run
 
-docker tag docker_id/image_name	//Tag docker file with docker hub repository	
-docker push docker_id/image_name	//Upload docker image to docker hub for everyone use
-docker exec -it container_id bash	//Access the working container bash terminal
-docker commit container_id new_name	//Create a new image with existing image
-docker export --output="any_name" contianer_id	//Export a container to the PC
+docker tag docker_id/image_name //Tag docker file with docker hub repository  
+docker push docker_id/image_name  //Upload docker image to docker hub for everyone use
+docker exec -it container_id bash //Access the working container bash terminal
+docker commit container_id new_name //Create a new image with existing image
+docker export --output="any_name" contianer_id  //Export a container to the PC
 docker save -o image_name <repo>:<tag>  //Export an image to the PC
-docker load -i image_name	//Import an image into the docker from PC
+docker load -i image_name //Import an image into the docker from PC
 
 
-	###Question 02### (labsheet 06)
-	Dockerfile
+
+  ###Question 02### (labsheet 06)
+  
+  Dockerfile
+  
+  
 FROM python
 
 RUN mkdir /python
@@ -53,17 +59,24 @@ COPY . .
 
 CMD flask run --host=0.0.0.0 --port=5000
 
-	Pythonflask.py
+  
+  Pythonflask.py
+
 from flask import Flask
 app = Flask(__name__)
 @app.route('/')
 def counter():
-	return '0'
-	
-	requirements.txt
+  return '0'
+  
+  
+  
+  requirements.txt
 Flask
-	
-	(Labsheet 07)
+  
+  
+  (Labsheet 07)
+  
+  
 FROM python
 
 RUN mkdir /app
@@ -82,12 +95,14 @@ COPY . .
 
 CMD flask run --host=0.0.0.0 --port=5000
 
-	requirements.txt
+  
+  
+requirements.txt
 
 Flask
 flask-redis
 
-	app.py
+  app.py
 from flask import Flask
 from flask_redis import FlaskRedis
 app = Flask(__name__)
@@ -95,16 +110,24 @@ app.config['REDIS_URL'] = 'redis://redis:6379/0'
 redis = FlaskRedis(app)
 @app.route('/')
 def counter():
-	return str(redis.incr('counter'))
-	
-	###Question 03### (Dockerfile) docker build -t img_name \\ docker run -p 80:80 iname
+  return str(redis.incr('counter'))
+  
+  
+  
+  
+  ###Question 03### 
+  
+(Dockerfile) docker build -t img_name \\ docker run -p 80:80 iname
+
 FROM ubuntu
 
 MAINTAINER Raat
 
 RUN apt-get update
 
-RUN apt-get -y install nginx
+RUN apt-get -y install nginx 
+
+RUN apt-get -y install nginx <-- http
 
 ADD . /var/www/html/
 
@@ -112,7 +135,12 @@ COPY . /var/www/html/
 
 ENTRYPOINT ["usr/sbin/nginx","-g","daemon off;"]
 
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"] for http <--
+
 EXPOSE 80
+
+
+
 
 // for python question
 
@@ -124,7 +152,14 @@ COPY hello.py ./
 
 CMD ["python","hello.py"]
 
-	###Question 04### (docker-compose.yml) - compose up
+
+
+###Question 04### 
+
+(docker-compose.yml) - compose up
+
+
+
 version : "3"
 
 services:
